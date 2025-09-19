@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #b4e6ca;
+            color: #fcfcfc;
+            padding: 1em 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .dashboard-section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            border-bottom: 3px solid #a9d3bb;
+            padding-bottom: 10px;
+            color: #02150a;
+        }
+
+        .kpi-card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .kpi-card {
+            background: #ecf8f2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px;
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        #query-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #query-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #2e8b57;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #228b22;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        header h1 {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        header img {
+            margin-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f8ff;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <header>
+        <h1><img src="logo.jpg" alt="Logo" style="height: 50px; vertical-align: middle;"> Business Dashboard</h1>
+    </header>
+
+    <main class="container">
+        <section id="kpi-section" class="dashboard-section">
+            <h2>Key Performance Indicators</h2>
+            <div class="kpi-card-container">
+                <div class="kpi-card">
+                    <img src="sales.jpg" alt="Sales Icon" style="height: 40px;">
+                    <h3>Total Sales</h3>
+                    <p>{{ kpi_data.total_sales }}</p>
+                </div>
+                <div class="kpi-card">
+                    <img src="customer.jpg" alt="Customer Icon" style="height: 40px;">
+                    <h3>Total Customers</h3>
+                    <p>{{ kpi_data.total_customers }}</p>
+                </div>
+                <div class="kpi-card">
+                    <img src="order.webp" alt="Order Icon" style="height: 40px;">
+                    <h3>Total Orders</h3>
+                    <p>{{ kpi_data.total_orders }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="query-section" class="dashboard-section">
+            <h2>Ask a Question</h2>
+            <form id="query-form">
+                <input type="text" id="query-input" placeholder="Enter your question...">
+                <button type="submit">Ask</button>
+            </form>
+            <div id="query-results">
+                <!-- Results will be displayed here -->
+            </div>
+        </section>
+
+        <section id="chart-section" class="dashboard-section">
+            <h2>Data Visualization</h2>
+            <canvas id="myChart"></canvas>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Business Dashboard</p>
+    </footer>
+</body>
+</html>
